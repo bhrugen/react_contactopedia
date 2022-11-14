@@ -44,7 +44,7 @@ class ContactIndex extends React.Component {
       return { status: "failure", msg: "Please Enter a valid Phone Number" };
     }
     const duplicateRecord = this.state.contactList.filter((x) => {
-      if (x.name == newContact.name || x.phone == newContact.phone) {
+      if (x.name == newContact.name && x.phone == newContact.phone) {
         return true;
       }
     });
