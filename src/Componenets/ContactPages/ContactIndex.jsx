@@ -10,6 +10,7 @@ import RemoveAllContact from "./RemoveAllContact";
 class ContactIndex extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       contactList: [
         {
@@ -65,6 +66,19 @@ class ContactIndex extends React.Component {
     }
   };
 
+  handleToggleFavorites = (contact) => {
+    this.setState((prevState) => {
+      return {
+        contactList: prevState.contactList.map((obj) => {
+          if (obj.id == contact.id) {
+            return { ...obj, isFavorite: !obj.isFavorite };
+          }
+          return obj;
+        }),
+      };
+    });
+  };
+
   render() {
     return (
       <div>
@@ -88,6 +102,7 @@ class ContactIndex extends React.Component {
                   contacts={this.state.contactList.filter(
                     (u) => u.isFavorite == true
                   )}
+                  favoriteClick={this.handleToggleFavorites}
                 />
               </div>
             </div>
@@ -97,6 +112,7 @@ class ContactIndex extends React.Component {
                   contacts={this.state.contactList.filter(
                     (u) => u.isFavorite == false
                   )}
+                  favoriteClick={this.handleToggleFavorites}
                 />
               </div>
             </div>
