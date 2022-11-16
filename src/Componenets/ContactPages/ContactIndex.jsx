@@ -69,6 +69,7 @@ class ContactIndex extends React.Component {
   };
 
   handleUpdateContact = (updatedContact) => {
+    console.log(updatedContact);
     if (updatedContact.name == "") {
       return { status: "failure", msg: "Please Enter a valid Name" };
     } else if (updatedContact.phone == "") {
