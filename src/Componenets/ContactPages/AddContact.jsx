@@ -17,11 +17,20 @@ class AddContact extends React.Component {
     const name = e.target.elements.contactName.value.trim();
     const email = e.target.elements.contactEmail.value.trim();
     const phone = e.target.elements.contactPhone.value.trim();
-    const response = this.props.handleAddContact({
-      name: name,
-      email: email,
-      phone: phone,
-    });
+    let response = undefined;
+    if (this.props.isUpdating) {
+      response = this.props.handleUpdateContact({
+        name: name,
+        email: email,
+        phone: phone,
+      });
+    } else {
+      response = this.props.handleAddContact({
+        name: name,
+        email: email,
+        phone: phone,
+      });
+    }
 
     if (response.status == "success") {
       this.setState({ errorMessage: undefined, successMessage: response.msg });
